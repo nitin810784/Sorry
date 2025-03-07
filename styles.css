@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital@0;1&family=Dancing+Script&display=swap');
+        
+:root {
+    --primary-color: #4a6fa5;
+    --secondary-color: #e8c07d;
+    --background-color: #f9f7f4;
+    --text-color: #333333;
+    --accent-color: #d88373;
+    --border-color: rgba(74, 111, 165, 0.3);
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.5s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lora', serif;
+    line-height: 1.8;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(74, 111, 165, 0.03) 0%, transparent 200px),
+        radial-gradient(circle at 80% 80%, rgba(216, 131, 115, 0.03) 0%, transparent 200px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    padding: 2rem 0;
+}
+
+.main-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+.letter-container {
+    position: relative;
+    z-index: 1;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.envelope-back {
+    background: linear-gradient(135deg, var(--primary-color), #6887b6);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 10px;
+    transform: translateZ(-10px);
+    box-shadow: var(--box-shadow);
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+header {
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    background: linear-gradient(135deg, var(--primary-color), #6887b6);
+    color: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    background-image: 
+        radial-gradient(circle at 30% 40%, white 0%, transparent 40px),
+        radial-gradient(circle at 70% 60%, white 0%, transparent 50px);
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.date {
+    font-style: italic;
+    opacity: 0.9;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.letter {
+    background: white;
+    padding: 3.5rem;
+    border-radius: 0 0 10px 10px;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    transform: translateY(0);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    overflow: hidden;
+}
+
+.letter:hover {
+    transform: translateY(-5px);
+}
+
+.paper-texture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPgogIDxmaWx0ZXIgaWQ9Im5vaXNlIj4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIwLjA1IiBudW1PY3RhdmVzPSIyIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+CiAgICA8ZmVDb2xvck1hdHJpeCB0eXBlPSJzYXR1cmF0ZSIgdmFsdWVzPSIwIi8+CiAgPC9maWx0ZXI+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMC4wMyIvPgo8L3N2Zz4=');
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.letter-content {
+    position: relative;
+    z-index: 1;
+}
+
+.letter p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    position: relative;
+    line-height: 1.8;
+}
+
+.letter p:first-of-type {
+    margin-top: 0.5rem;
+}
+
+.letter p.highlight {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--accent-color);
+    text-align: center;
+    padding: 1rem 2rem;
+    position: relative;
+}
+
+.letter p.highlight::before,
+.letter p.highlight::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100px;
+    background: var(--accent-color);
+    opacity: 0.5;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.letter p.highlight::before {
+    top: 0;
+}
+
+.letter p.highlight::after {
+    bottom: 0;
+}
+
+.salutation, .closing {
+    font-weight: bold;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-top: 1rem;
+    margin-left: 2rem;
+    position: relative;
+}
+
+.signature::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    bottom: -10px;
+    left: 0;
+    opacity: 0.3;
+}
+
+.decoration {
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    pointer-events: none;
+}
+
+.top-left {
+    top: 0px;
+    left: 0px;
+    border-top: 2px solid var(--secondary-color);
+    border-left: 2px solid var(--secondary-color);
+    opacity: 0.3;
+}
+
+.bottom-right {
+    bottom: 0px;
+    right: 0px;
+    border-bottom: 2px solid var(--secondary-color);
+    border-right: 2px solid var(--secondary-color);
+    opacity: 0.3;
+}
+
+.heart-container {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -10;
+    animation: pulse 5s infinite;
+}
+
+.heart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: var(--accent-color);
+    transform: rotate(45deg);
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(216, 131, 115, 0.5);
+}
+
+.heart:before, .heart:after {
+    content: "";
+    z-index: 1000;
+    width: 30px;
+    height: 30px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart:before {
+    top: -15px;
+    left: 0;
+}
+
+.heart:after {
+    top: 0;
+    left: -15px;
+}
+
+@keyframes pulse {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.1); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
+.fade-in {
+    animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.decoration-image {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.flower1 {
+    top: 30px;
+    right: 50px;
+    transform: rotate(15deg);
+}
+
+.flower2 {
+    bottom: 50px;
+    left: 40px;
+    transform: rotate(-10deg);
+}
+
+.circle-decoration {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed var(--accent-color);
+    opacity: 0.2;
+}
+
+.circle1 {
+    width: 100px;
+    height: 100px;
+    top: 20%;
+    right: 10%;
+}
+
+.circle2 {
+    width: 70px;
+    height: 70px;
+    bottom: 15%;
+    left: 15%;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 30px;
+    font-style: italic;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem 0;
+    }
+    
+    .main-container {
+        padding: 15px;
+    }
+    
+    header {
+        padding: 2rem 1rem 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .letter {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .letter p {
+        font-size: 1rem;
+    }
+    
+    .signature {
+        font-size: 1.8rem;
+    }
+    
+    .decoration {
+        height: 80px;
+        width: 80px;
+    }
+    
+    .heart-container {
+        width: 50px;
+        height: 50px;
+        top: -25px;
+    }
+    
+    .heart {
+        width: 25px;
+        height: 25px;
+        top: 12.5px;
+        left: 12.5px;
+    }
+    
+    .heart:before, .heart:after {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .heart:before {
+        top: -12.5px;
+    }
+    
+    .heart:after {
+        left: -12.5px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .letter p {
+        font-size: 0.95rem;
+    }
+    
+    .letter p.highlight {
+        font-size: 1.05rem;
+        padding: 0.8rem 1rem;
+    }
+    
+    .signature {
+        font-size: 1.6rem;
+        margin-top: 0.8rem;
+        margin-left: 1rem;
+    }
+    
+    .decoration-image {
+        display: none;
+    }
+}
